@@ -60,7 +60,7 @@ export default function BookingPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [step, setStep] = useState(1)
 
-  const { register, handleSubmit, formState: { errors }, watch, trigger } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors }, watch, trigger, setError } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: { service_type: 'washing-machine' },
   })
@@ -70,7 +70,7 @@ export default function BookingPage() {
   const nextStep = async () => {
     let valid = false
     if (step === 1) valid = await trigger('service_type')
-    if (step === 2) valid = await trigger(['name', 'phone', 'area', 'address'])
+    if (step === 2) valid = await trigger(['name', 'phone', 'area', 'address', 'issue_description'])
     if (valid) setStep((s) => s + 1)
   }
 
@@ -359,6 +359,7 @@ export default function BookingPage() {
                       Back
                     </button>
                     <button type="submit" disabled={isLoading}
+                      onClick={() => { if (Object.keys(errors).length > 0) { toast.error('Please go back and fill all required fields'); setStep(2) } }}
                       className="flex-1 bg-blue-700 hover:bg-blue-800 disabled:opacity-60 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm transition-colors">
                       {isLoading ? <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</>
                         : <>Confirm Booking <CheckCircle className="w-4 h-4" /></>}
