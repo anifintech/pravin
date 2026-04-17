@@ -55,7 +55,7 @@ export default function ServicePageTemplate({
                 </div>
                 <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                   <Shield className="w-4 h-4 text-green-500" />
-                  
+                  Quality Assured
                 </div>
                 <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                   <Star className="w-4 h-4 text-yellow-500" />

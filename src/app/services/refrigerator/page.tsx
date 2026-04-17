@@ -1,9 +1,23 @@
 import type { Metadata } from 'next'
 import ServicePageTemplate from '@/components/sections/ServicePageTemplate'
+import { ServiceJsonLd } from '@/components/SEO/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Refrigerator Repair in Chennai | Doorstep Service – Sai Service',
-  description: 'Expert fridge & refrigerator repair at your doorstep in Chennai. Single door, double door, side-by-side. Same-day service, gas refilling & . Call +91 98765 43210.',
+  title: 'Refrigerator Repair in Chennai | Fridge Repair Same Day Doorstep',
+  description:
+    'Expert fridge & refrigerator repair at your doorstep in Chennai. Single door, double door, side-by-side. Gas refilling, compressor repair. Starting ₹399. Call +91 98765 43210.',
+  keywords: [
+    'refrigerator repair Chennai', 'fridge repair Chennai', 'fridge not cooling Chennai',
+    'refrigerator gas refilling Chennai', 'compressor repair Chennai',
+    'Samsung fridge repair Chennai', 'LG refrigerator repair Chennai',
+    'double door fridge repair Chennai', 'fridge repair Anna Nagar', 'fridge repair Adyar',
+  ],
+  alternates: { canonical: 'https://saiservice.in/services/refrigerator' },
+  openGraph: {
+    title: 'Refrigerator Repair in Chennai | Sai Service',
+    description: 'Doorstep fridge repair in Chennai. Gas refilling, compressor & thermostat repair. Starting ₹399.',
+    url: 'https://saiservice.in/services/refrigerator',
+  },
 }
 
 const problems = [
@@ -30,17 +44,26 @@ const faq = [
 
 export default function RefrigeratorPage() {
   return (
-    <ServicePageTemplate
-      title="Refrigerator Repair in Chennai"
-      subtitle="Fridge & Refrigerator Service"
-      description="Professional doorstep refrigerator repair in Chennai. Single door, double door & side-by-side fridges fixed same day. Gas refilling, compressor repair & thermostat replacement with ."
-      icon="🧊"
-      color="bg-gradient-to-br from-indigo-600 to-blue-600"
-      bgColor="bg-gradient-to-br from-indigo-50 to-blue-50"
-      startingPrice="₹399"
-      problems={problems}
-      brands={brands}
-      faq={faq}
-    />
+    <>
+      <ServiceJsonLd
+        name="Refrigerator Repair in Chennai"
+        description="Professional doorstep refrigerator repair in Chennai. Single door, double door & side-by-side fridges fixed same day. Gas refilling, compressor repair & thermostat replacement."
+        url="https://saiservice.in/services/refrigerator"
+        price="399"
+        faq={faq}
+      />
+      <ServicePageTemplate
+        title="Refrigerator Repair in Chennai"
+        subtitle="Fridge & Refrigerator Service"
+        description="Professional doorstep refrigerator repair in Chennai. Single door, double door & side-by-side fridges fixed same day. Gas refilling, compressor repair & thermostat replacement."
+        icon="🧊"
+        color="bg-gradient-to-br from-indigo-600 to-blue-600"
+        bgColor="bg-gradient-to-br from-indigo-50 to-blue-50"
+        startingPrice="₹399"
+        problems={problems}
+        brands={brands}
+        faq={faq}
+      />
+    </>
   )
 }

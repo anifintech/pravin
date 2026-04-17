@@ -2,7 +2,32 @@
   "permissions": {
     "allow": [
       "WebSearch",
-      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --yes)"
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --yes)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\(Object.keys\\(l\\).filter\\(k => k.match\\(/Face|Insta|Youtube|Twitter|Share|Social/i\\)\\).join\\(', '\\)\\)\")",
+      "mcp__c0841dce-a691-4912-9b38-497973bdf4b6__list_organizations",
+      "mcp__c0841dce-a691-4912-9b38-497973bdf4b6__get_cost",
+      "mcp__c0841dce-a691-4912-9b38-497973bdf4b6__confirm_cost",
+      "mcp__c0841dce-a691-4912-9b38-497973bdf4b6__create_project",
+      "mcp__c0841dce-a691-4912-9b38-497973bdf4b6__list_projects",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(claude mcp *)",
+      "mcp__c0841dce-a691-4912-9b38-497973bdf4b6__get_project_url",
+      "mcp__c0841dce-a691-4912-9b38-497973bdf4b6__get_publishable_keys",
+      "mcp__c0841dce-a691-4912-9b38-497973bdf4b6__apply_migration",
+      "mcp__c0841dce-a691-4912-9b38-497973bdf4b6__get_project",
+      "mcp__c0841dce-a691-4912-9b38-497973bdf4b6__execute_sql",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "WebFetch(domain:www.bosch-home.in)",
+      "Bash(sed -i '' 's/certified technicians &  on all repairs\\\\./certified technicians./g; \\\\ *)",
+      "Bash(sed -i '' 's/title: '\\\\'''\\\\'',/title: '\\\\''Quality Service'\\\\'',/g; \\\\ *)",
+      "Bash(sed -i '' 's/You get a  on the repair\\\\./Once approved, we fix it right then and you'\\\\''re good to go./g' src/components/sections/HowItWorksSection.tsx)",
+      "Bash(sed -i '' 's/'\\\\''Same-Day Repair'\\\\'', '\\\\'''\\\\''/'\\\\''Same-Day Repair'\\\\'', '\\\\''Genuine Spare Parts'\\\\''/g; \\\\ *)",
+      "Bash(sed -i '' 's/<span className=\"text-xs\"><\\\\/span>/<span className=\"text-xs\">Quality Assured<\\\\/span>/g' src/components/sections/HeroSection.tsx)",
+      "Bash(git push *)"
     ]
   }
 }

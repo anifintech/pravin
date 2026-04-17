@@ -1,9 +1,23 @@
 import type { Metadata } from 'next'
 import ServicePageTemplate from '@/components/sections/ServicePageTemplate'
+import { ServiceJsonLd } from '@/components/SEO/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Dishwasher Repair in Chennai | Doorstep Service – Sai Service',
-  description: 'Expert dishwasher repair at your doorstep in Chennai. All brands including Bosch, IFB, Siemens. Same-day service, error code diagnosis & . Call +91 98765 43210.',
+  title: 'Dishwasher Repair in Chennai | Bosch IFB Siemens Same Day Service',
+  description:
+    'Expert dishwasher repair at your doorstep in Chennai. Bosch E15/E24, IFB, Siemens error codes fixed same day. Starting ₹499. Call +91 98765 43210.',
+  keywords: [
+    'dishwasher repair Chennai', 'Bosch dishwasher repair Chennai', 'IFB dishwasher repair Chennai',
+    'Siemens dishwasher repair Chennai', 'dishwasher not draining Chennai',
+    'Bosch E15 error Chennai', 'Bosch E24 error Chennai', 'dishwasher repair Anna Nagar',
+    'dishwasher repair Adyar', 'dishwasher service Chennai',
+  ],
+  alternates: { canonical: 'https://saiservice.in/services/dishwasher' },
+  openGraph: {
+    title: 'Dishwasher Repair in Chennai | Sai Service',
+    description: 'Doorstep dishwasher repair in Chennai. Bosch, IFB, Siemens error codes fixed same day. Starting ₹499.',
+    url: 'https://saiservice.in/services/dishwasher',
+  },
 }
 
 const problems = [
@@ -30,17 +44,26 @@ const faq = [
 
 export default function DishwasherPage() {
   return (
-    <ServicePageTemplate
-      title="Dishwasher Repair in Chennai"
-      subtitle="Dishwasher Service"
-      description="Certified doorstep dishwasher repair in Chennai. All brands — Bosch, IFB, Siemens, LG & more. Error code diagnosis, drain & pump repair. Transparent pricing."
-      icon="🍽️"
-      color="bg-gradient-to-br from-orange-500 to-red-600"
-      bgColor="bg-gradient-to-br from-orange-50 to-red-50"
-      startingPrice="₹499"
-      problems={problems}
-      brands={brands}
-      faq={faq}
-    />
+    <>
+      <ServiceJsonLd
+        name="Dishwasher Repair in Chennai"
+        description="Certified doorstep dishwasher repair in Chennai. All brands — Bosch, IFB, Siemens, LG & more. Error code diagnosis, drain & pump repair."
+        url="https://saiservice.in/services/dishwasher"
+        price="499"
+        faq={faq}
+      />
+      <ServicePageTemplate
+        title="Dishwasher Repair in Chennai"
+        subtitle="Dishwasher Service"
+        description="Certified doorstep dishwasher repair in Chennai. All brands — Bosch, IFB, Siemens, LG & more. Error code diagnosis, drain & pump repair. Transparent pricing."
+        icon="🍽️"
+        color="bg-gradient-to-br from-orange-500 to-red-600"
+        bgColor="bg-gradient-to-br from-orange-50 to-red-50"
+        startingPrice="₹499"
+        problems={problems}
+        brands={brands}
+        faq={faq}
+      />
+    </>
   )
 }

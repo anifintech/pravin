@@ -1,9 +1,30 @@
 import type { Metadata } from 'next'
 import ServicePageTemplate from '@/components/sections/ServicePageTemplate'
+import { ServiceJsonLd } from '@/components/SEO/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Washing Machine Repair in Chennai | Doorstep Service – Sai Service',
-  description: 'Expert washing machine repair at your doorstep in Chennai. Front load, top load, semi-automatic. Same-day service, . Call +91 98765 43210.',
+  title: 'Washing Machine Repair in Chennai | Same Day Doorstep Service',
+  description:
+    'Expert washing machine repair at your doorstep in Chennai. Front load, top load, semi-automatic. Samsung, LG, Whirlpool, IFB repaired same day. Starting ₹299. Call +91 98765 43210.',
+  keywords: [
+    'washing machine repair Chennai',
+    'washing machine repair near me Chennai',
+    'front load washing machine repair Chennai',
+    'Samsung washing machine repair Chennai',
+    'LG washing machine repair Chennai',
+    'Whirlpool washing machine repair Chennai',
+    'IFB washing machine repair Chennai',
+    'washing machine not spinning Chennai',
+    'washing machine service Anna Nagar',
+    'washing machine service Adyar',
+    'washing machine service OMR',
+  ],
+  alternates: { canonical: 'https://saiservice.in/services/washing-machine' },
+  openGraph: {
+    title: 'Washing Machine Repair in Chennai | Sai Service',
+    description: 'Doorstep washing machine repair in Chennai. Starting ₹299.',
+    url: 'https://saiservice.in/services/washing-machine',
+  },
 }
 
 const problems = [
@@ -28,12 +49,22 @@ const faq = [
   { q: 'What warranty do you provide?', a: 'All washing machine repairs come with a service warranty. If the same issue recurs, we fix it at no extra charge.' },
 ]
 
+const faqForSchema = faq
+
 export default function WashingMachinePage() {
   return (
-    <ServicePageTemplate
+    <>
+      <ServiceJsonLd
+        name="Washing Machine Repair in Chennai"
+        description="Expert doorstep washing machine repair in Chennai. Front load, top load & semi-automatic machines fixed same day."
+        url="https://saiservice.in/services/washing-machine"
+        price="299"
+        faq={faqForSchema}
+      />
+      <ServicePageTemplate
       title="Washing Machine Repair in Chennai"
       subtitle="Washing Machine Service"
-      description="Expert doorstep washing machine repair in Chennai by certified technicians. Front load, top load & semi-automatic machines fixed same day. Transparent pricing, genuine parts & ."
+      description="Expert doorstep washing machine repair in Chennai by certified technicians. Front load, top load & semi-automatic machines fixed same day. Transparent pricing, genuine parts."
       icon="🫧"
       color="bg-gradient-to-br from-blue-600 to-cyan-600"
       bgColor="bg-gradient-to-br from-blue-50 to-cyan-50"
@@ -42,5 +73,6 @@ export default function WashingMachinePage() {
       brands={brands}
       faq={faq}
     />
+    </>
   )
 }
