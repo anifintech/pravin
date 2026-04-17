@@ -5,8 +5,11 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import toast from 'react-hot-toast'
-import { Phone, MessageCircle, Clock, Shield, CheckCircle, ArrowRight, Loader2 } from 'lucide-react'
-import type { LeadFormData } from '@/types'
+import Link from 'next/link'
+import {
+  Phone, MessageCircle, Clock, CheckCircle, ArrowRight,
+  Loader2, Monitor, MapPin, CalendarDays, User, Wrench,
+} from 'lucide-react'
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -16,7 +19,7 @@ const schema = z.object({
   appliance_brand: z.string().optional(),
   issue_description: z.string().min(10, 'Please describe the issue in at least 10 characters'),
   address: z.string().min(10, 'Enter your full address'),
-  area: z.string().min(2, 'Select or enter your area'),
+  area: z.string().min(2, 'Select your area'),
   preferred_date: z.string().optional(),
   preferred_time: z.string().optional(),
 })
@@ -38,16 +41,38 @@ const timeSlots = [
 
 const brands = ['Samsung', 'LG', 'Whirlpool', 'IFB', 'Bosch', 'Godrej', 'Haier', 'Panasonic', 'Voltas', 'Other']
 
+const serviceOptions = [
+  { value: 'washing-machine', label: 'Washing Machine', icon: '🫧', desc: 'Front load, top load, semi-auto' },
+  { value: 'refrigerator', label: 'Refrigerator', icon: '🧊', desc: 'Single door, double door, side-by-side' },
+  { value: 'dishwasher', label: 'Dishwasher', icon: '🍽️', desc: 'All brands & models' },
+  { value: 'other', label: 'Other Appliance', icon: '🔧', desc: 'Describe your appliance' },
+]
+
+const steps = [
+  { num: '01', icon: Monitor, title: 'Book Online or Call', desc: 'Submit your request in under 2 minutes' },
+  { num: '02', icon: Wrench, title: 'Technician Assigned', desc: 'We assign a certified technician near you' },
+  { num: '03', icon: MapPin, title: 'Doorstep Visit', desc: 'Technician arrives within 60–90 minutes' },
+  { num: '04', icon: CheckCircle, title: 'Repair Done', desc: 'Issue fixed with genuine parts, on the spot' },
+]
+
 export default function BookingPage() {
   const [submitted, setSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [step, setStep] = useState(1)
 
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors }, watch, trigger } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: { service_type: 'washing-machine' },
   })
 
   const serviceType = watch('service_type')
+
+  const nextStep = async () => {
+    let valid = false
+    if (step === 1) valid = await trigger('service_type')
+    if (step === 2) valid = await trigger(['name', 'phone', 'area', 'address'])
+    if (valid) setStep((s) => s + 1)
+  }
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true)
@@ -60,7 +85,7 @@ export default function BookingPage() {
       const result = await res.json()
       if (!res.ok) throw new Error(result.error || 'Submission failed')
       setSubmitted(true)
-    } catch (err) {
+    } catch {
       toast.error('Something went wrong. Please call us directly at +91 98765 43210')
     } finally {
       setIsLoading(false)
@@ -69,279 +94,336 @@ export default function BookingPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-20 px-4">
-        <div className="bg-white rounded-3xl shadow-xl p-10 max-w-lg w-full text-center">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-10 h-10 text-green-600" />
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center pt-20 px-4">
+        <div className="bg-white border border-gray-200 rounded-2xl p-10 max-w-lg w-full text-center shadow-sm">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+            <CheckCircle className="w-8 h-8 text-green-600" />
           </div>
-          <h2 className="text-2xl font-black text-slate-900 mb-3">Booking Confirmed!</h2>
-          <p className="text-slate-600 mb-6">
-            Thank you! Our team will call you within <strong>30 minutes</strong> to confirm your appointment.
-            Our technician will arrive at your doorstep within <strong>60–90 minutes</strong>.
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Request Submitted!</h2>
+          <p className="text-gray-500 mb-6 text-sm leading-relaxed">
+            Thank you! Our team will contact you within <strong className="text-gray-800">30 minutes</strong> to confirm your appointment.
           </p>
-          <div className="bg-blue-50 rounded-2xl p-4 mb-6 text-left">
-            <p className="text-sm font-semibold text-blue-900 mb-1">Need faster response?</p>
-            <a href="tel:+919876543210" className="flex items-center gap-2 text-blue-600 font-bold">
-              <Phone className="w-4 h-4" /> Call us: +91 98765 43210
+          <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-left">
+            <p className="text-xs font-semibold text-blue-800 uppercase tracking-wide mb-2">Need immediate help?</p>
+            <a href="tel:+919876543210" className="flex items-center gap-2 text-blue-700 font-bold text-sm">
+              <Phone className="w-4 h-4" /> +91 98765 43210
             </a>
           </div>
-          <a
-            href="/"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold px-6 py-3 rounded-xl hover:shadow-lg transition-all"
-          >
-            Back to Home
-            <ArrowRight className="w-4 h-4" />
-          </a>
+          <Link href="/" className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-3 rounded-lg text-sm transition-colors">
+            Back to Home <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-20">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900 to-blue-700 py-16 px-4">
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <span className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-blue-200 text-sm font-semibold px-4 py-2 rounded-full mb-4">
-            <Clock className="w-4 h-4" />
-            Technician in 90 Minutes
-          </span>
-          <h1 className="text-4xl font-black mb-3">Book Your Repair Service</h1>
-          <p className="text-blue-200 text-lg">
-            Fill in the details below. Our team will call you within 30 minutes to confirm.
-          </p>
+    <div className="min-h-screen bg-gray-50 pt-16">
+
+      {/* Top banner — Bosch style */}
+      <div className="bg-[#0d3a70] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="max-w-2xl">
+            <p className="text-blue-300 text-sm font-semibold uppercase tracking-widest mb-2">Service & Repair</p>
+            <h1 className="text-3xl sm:text-4xl font-bold mb-3 leading-tight">
+              Book a Repair Service
+            </h1>
+            <p className="text-blue-200 text-base">
+              Expert doorstep repair for washing machines, refrigerators & dishwashers across Chennai.
+              Certified technicians, genuine spare parts.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid lg:grid-cols-3 gap-10">
-          {/* Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-3xl shadow-sm border border-slate-100 p-8">
-              <h2 className="text-xl font-black text-slate-900 mb-6">Service Details</h2>
-
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                {/* Service type */}
+      {/* How it works — horizontal strip like Bosch */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-gray-100">
+            {steps.map((s) => (
+              <div key={s.num} className="py-6 px-5 flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center">
+                  <s.icon className="w-5 h-5 text-white" />
+                </div>
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-3">
-                    What needs to be repaired? *
-                  </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {[
-                      { value: 'washing-machine', label: 'Washing Machine', icon: '🫧' },
-                      { value: 'refrigerator', label: 'Refrigerator', icon: '🧊' },
-                      { value: 'dishwasher', label: 'Dishwasher', icon: '🍽️' },
-                      { value: 'other', label: 'Other', icon: '🔧' },
-                    ].map((opt) => (
+                  <p className="text-xs text-gray-400 font-semibold mb-0.5">Step {s.num}</p>
+                  <p className="text-sm font-bold text-gray-900">{s.title}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Main content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid lg:grid-cols-3 gap-8">
+
+          {/* Booking form — 2/3 width */}
+          <div className="lg:col-span-2 space-y-5">
+
+            {/* Progress indicator */}
+            <div className="flex items-center gap-2 mb-2">
+              {[1, 2, 3].map((s) => (
+                <div key={s} className="flex items-center gap-2">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all ${
+                    step === s ? 'bg-blue-700 border-blue-700 text-white'
+                    : step > s ? 'bg-green-500 border-green-500 text-white'
+                    : 'border-gray-300 text-gray-400 bg-white'
+                  }`}>
+                    {step > s ? '✓' : s}
+                  </div>
+                  <span className={`text-sm font-medium hidden sm:block ${step === s ? 'text-blue-700' : 'text-gray-400'}`}>
+                    {s === 1 ? 'Select Appliance' : s === 2 ? 'Your Details' : 'Schedule'}
+                  </span>
+                  {s < 3 && <div className={`flex-1 h-0.5 w-8 ${step > s ? 'bg-green-400' : 'bg-gray-200'}`} />}
+                </div>
+              ))}
+            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)}>
+
+              {/* Step 1 — Appliance */}
+              {step === 1 && (
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                  <h2 className="text-lg font-bold text-gray-900 mb-1">Which appliance needs repair?</h2>
+                  <p className="text-gray-500 text-sm mb-5">Select the appliance type to get started</p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    {serviceOptions.map((opt) => (
                       <label key={opt.value} className="cursor-pointer">
                         <input type="radio" value={opt.value} {...register('service_type')} className="sr-only" />
-                        <div className={`border-2 rounded-2xl p-3 text-center transition-all ${
+                        <div className={`border-2 rounded-xl p-4 flex items-center gap-4 transition-all hover:border-blue-400 ${
                           serviceType === opt.value
-                            ? 'border-blue-500 bg-blue-50'
-                            : 'border-slate-200 hover:border-blue-200'
+                            ? 'border-blue-700 bg-blue-50'
+                            : 'border-gray-200 bg-white'
                         }`}>
-                          <div className="text-2xl mb-1">{opt.icon}</div>
-                          <div className="text-xs font-semibold text-slate-700">{opt.label}</div>
+                          <span className="text-3xl">{opt.icon}</span>
+                          <div>
+                            <p className={`font-bold text-sm ${serviceType === opt.value ? 'text-blue-800' : 'text-gray-800'}`}>{opt.label}</p>
+                            <p className="text-xs text-gray-500 mt-0.5">{opt.desc}</p>
+                          </div>
+                          {serviceType === opt.value && (
+                            <CheckCircle className="w-5 h-5 text-blue-700 ml-auto flex-shrink-0" />
+                          )}
                         </div>
                       </label>
                     ))}
                   </div>
-                </div>
 
-                {/* Name & Phone */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-1.5">Your Name *</label>
-                    <input
-                      {...register('name')}
-                      placeholder="Eg. Ramesh Kumar"
-                      className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:outline-none transition-colors"
-                    />
-                    {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-1.5">Mobile Number *</label>
-                    <input
-                      {...register('phone')}
-                      type="tel"
-                      placeholder="10-digit mobile number"
-                      className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:outline-none transition-colors"
-                    />
-                    {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
-                  </div>
+                  <button type="button" onClick={nextStep}
+                    className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-colors">
+                    Continue <ArrowRight className="w-5 h-5" />
+                  </button>
                 </div>
+              )}
 
-                {/* Email & Brand */}
-                <div className="grid sm:grid-cols-2 gap-4">
+              {/* Step 2 — Contact details */}
+              {step === 2 && (
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-5">
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-1.5">Email (Optional)</label>
-                    <input
-                      {...register('email')}
-                      type="email"
-                      placeholder="your@email.com"
-                      className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:outline-none transition-colors"
-                    />
-                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+                    <h2 className="text-lg font-bold text-gray-900 mb-1">Your contact details</h2>
+                    <p className="text-gray-500 text-sm">We'll use these to confirm your appointment</p>
                   </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1.5">Full Name *</label>
+                      <div className="relative">
+                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <input {...register('name')} placeholder="Eg. Ramesh Kumar"
+                          className="w-full pl-9 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:border-blue-600 focus:ring-1 focus:ring-blue-600 focus:outline-none" />
+                      </div>
+                      {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1.5">Mobile Number *</label>
+                      <div className="relative">
+                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <input {...register('phone')} type="tel" placeholder="10-digit number"
+                          className="w-full pl-9 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:border-blue-600 focus:ring-1 focus:ring-blue-600 focus:outline-none" />
+                      </div>
+                      {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
+                    </div>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1.5">Appliance Brand</label>
+                      <select {...register('appliance_brand')}
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:border-blue-600 focus:outline-none bg-white">
+                        <option value="">Select brand</option>
+                        {brands.map((b) => <option key={b} value={b}>{b}</option>)}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1.5">Email (Optional)</label>
+                      <input {...register('email')} type="email" placeholder="your@email.com"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:border-blue-600 focus:outline-none" />
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-1.5">Appliance Brand</label>
-                    <select
-                      {...register('appliance_brand')}
-                      className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:outline-none transition-colors bg-white"
-                    >
-                      <option value="">Select brand</option>
-                      {brands.map((b) => <option key={b} value={b}>{b}</option>)}
+                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">Describe the Problem *</label>
+                    <textarea {...register('issue_description')} rows={3}
+                      placeholder="Eg. Washing machine not spinning, makes loud noise during the cycle..."
+                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:border-blue-600 focus:outline-none resize-none" />
+                    {errors.issue_description && <p className="text-red-500 text-xs mt-1">{errors.issue_description.message}</p>}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">Area in Chennai *</label>
+                    <select {...register('area')}
+                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:border-blue-600 focus:outline-none bg-white">
+                      <option value="">Select your area</option>
+                      {chennaiAreas.map((a) => <option key={a} value={a}>{a}</option>)}
                     </select>
+                    {errors.area && <p className="text-red-500 text-xs mt-1">{errors.area.message}</p>}
                   </div>
-                </div>
 
-                {/* Issue */}
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-1.5">Describe the Issue *</label>
-                  <textarea
-                    {...register('issue_description')}
-                    rows={3}
-                    placeholder="Eg. Washing machine is not spinning, makes a loud noise during the cycle..."
-                    className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:outline-none transition-colors resize-none"
-                  />
-                  {errors.issue_description && <p className="text-red-500 text-xs mt-1">{errors.issue_description.message}</p>}
-                </div>
-
-                {/* Address */}
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-1.5">Full Address *</label>
-                  <textarea
-                    {...register('address')}
-                    rows={2}
-                    placeholder="Door no., street name, locality..."
-                    className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:outline-none transition-colors resize-none"
-                  />
-                  {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address.message}</p>}
-                </div>
-
-                {/* Area */}
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-1.5">Area in Chennai *</label>
-                  <select
-                    {...register('area')}
-                    className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:outline-none transition-colors bg-white"
-                  >
-                    <option value="">Select your area</option>
-                    {chennaiAreas.map((a) => <option key={a} value={a}>{a}</option>)}
-                  </select>
-                  {errors.area && <p className="text-red-500 text-xs mt-1">{errors.area.message}</p>}
-                </div>
-
-                {/* Date & Time */}
-                <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-1.5">Preferred Date</label>
-                    <input
-                      {...register('preferred_date')}
-                      type="date"
-                      min={new Date().toISOString().split('T')[0]}
-                      className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:outline-none transition-colors"
-                    />
+                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">Full Address *</label>
+                    <div className="relative">
+                      <MapPin className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                      <textarea {...register('address')} rows={2}
+                        placeholder="Door no., street, locality..."
+                        className="w-full pl-9 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:border-blue-600 focus:outline-none resize-none" />
+                    </div>
+                    {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address.message}</p>}
                   </div>
-                  <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-1.5">Preferred Time</label>
-                    <select
-                      {...register('preferred_time')}
-                      className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:outline-none transition-colors bg-white"
-                    >
-                      <option value="">Any time</option>
-                      {timeSlots.map((t) => <option key={t} value={t}>{t}</option>)}
-                    </select>
+
+                  <div className="flex gap-3 pt-2">
+                    <button type="button" onClick={() => setStep(1)}
+                      className="px-5 py-3 border border-gray-300 text-gray-700 font-semibold rounded-xl text-sm hover:bg-gray-50 transition-colors">
+                      Back
+                    </button>
+                    <button type="button" onClick={nextStep}
+                      className="flex-1 bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-sm transition-colors">
+                      Continue <ArrowRight className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
+              )}
 
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 disabled:opacity-60 text-white font-black py-4 rounded-2xl transition-all hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-3 text-base"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      Submitting...
-                    </>
-                  ) : (
-                    <>
-                      Book Service — Free Inspection
-                      <ArrowRight className="w-5 h-5" />
-                    </>
-                  )}
-                </button>
+              {/* Step 3 — Schedule */}
+              {step === 3 && (
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-5">
+                  <div>
+                    <h2 className="text-lg font-bold text-gray-900 mb-1">When is convenient for you?</h2>
+                    <p className="text-gray-500 text-sm">Optional — we'll call to confirm a suitable time</p>
+                  </div>
 
-                <p className="text-center text-xs text-slate-500">
-                  By submitting, you agree to be contacted by our team. No spam, ever.
-                </p>
-              </form>
-            </div>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1.5">Preferred Date</label>
+                      <div className="relative">
+                        <CalendarDays className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <input {...register('preferred_date')} type="date"
+                          min={new Date().toISOString().split('T')[0]}
+                          className="w-full pl-9 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:border-blue-600 focus:outline-none" />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1.5">Preferred Time Slot</label>
+                      <select {...register('preferred_time')}
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:border-blue-600 focus:outline-none bg-white">
+                        <option value="">Any time (8AM – 9PM)</option>
+                        {timeSlots.map((t) => <option key={t} value={t}>{t}</option>)}
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Summary box */}
+                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
+                    <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Booking Summary</p>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Service</span>
+                        <span className="font-semibold text-gray-900 capitalize">{serviceType.replace('-', ' ')}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Location</span>
+                        <span className="font-semibold text-gray-900">{watch('area') || '—'}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Inspection Fee</span>
+                        <span className="font-bold text-green-700">Free</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 pt-2">
+                    <button type="button" onClick={() => setStep(2)}
+                      className="px-5 py-3 border border-gray-300 text-gray-700 font-semibold rounded-xl text-sm hover:bg-gray-50 transition-colors">
+                      Back
+                    </button>
+                    <button type="submit" disabled={isLoading}
+                      className="flex-1 bg-blue-700 hover:bg-blue-800 disabled:opacity-60 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm transition-colors">
+                      {isLoading ? <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</>
+                        : <>Confirm Booking <CheckCircle className="w-4 h-4" /></>}
+                    </button>
+                  </div>
+
+                  <p className="text-center text-xs text-gray-400">
+                    By submitting, our team will contact you to confirm. No spam.
+                  </p>
+                </div>
+              )}
+            </form>
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-5">
+          {/* Sidebar — 1/3 width */}
+          <div className="space-y-4">
+
             {/* Call card */}
-            <div className="bg-gradient-to-br from-blue-900 to-blue-700 rounded-3xl p-6 text-white">
-              <h3 className="font-black text-lg mb-2">Prefer to Call?</h3>
-              <p className="text-blue-200 text-sm mb-4">Talk to our team directly for instant booking.</p>
-              <a
-                href="tel:+919876543210"
-                className="flex items-center gap-3 bg-white text-blue-700 font-bold px-5 py-3 rounded-xl hover:bg-blue-50 transition-colors"
-              >
-                <Phone className="w-5 h-5" />
-                +91 98765 43210
+            <div className="bg-[#0d3a70] text-white rounded-2xl p-5">
+              <p className="text-blue-300 text-xs font-semibold uppercase tracking-wide mb-1">Prefer to call?</p>
+              <p className="font-bold text-lg mb-3">Talk to our team directly</p>
+              <a href="tel:+919876543210"
+                className="flex items-center gap-3 bg-white text-blue-800 font-bold px-4 py-3 rounded-xl hover:bg-blue-50 transition-colors text-sm">
+                <Phone className="w-5 h-5" /> +91 98765 43210
+              </a>
+              <p className="text-blue-300 text-xs mt-3">Mon – Sun • 8AM to 9PM</p>
+            </div>
+
+            {/* WhatsApp */}
+            <div className="border border-gray-200 bg-white rounded-2xl p-5">
+              <p className="font-bold text-gray-900 text-sm mb-1">Chat on WhatsApp</p>
+              <p className="text-gray-500 text-xs mb-3">Send photos for faster diagnosis</p>
+              <a href={`https://wa.me/919876543210?text=${encodeURIComponent('Hi! I need appliance repair in Chennai.')}`}
+                target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-3 rounded-xl transition-colors text-sm">
+                <MessageCircle className="w-5 h-5" /> WhatsApp Us
               </a>
             </div>
 
-            {/* WhatsApp card */}
-            <div className="bg-green-50 border border-green-200 rounded-3xl p-6">
-              <h3 className="font-black text-slate-900 text-base mb-2">Chat on WhatsApp</h3>
-              <p className="text-slate-600 text-sm mb-4">Send us photos of the issue for faster diagnosis.</p>
-              <a
-                href={`https://wa.me/919876543210?text=${encodeURIComponent('Hi! I need appliance repair in Chennai.')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold px-5 py-3 rounded-xl transition-colors"
-              >
-                <MessageCircle className="w-5 h-5" />
-                WhatsApp Us
-              </a>
-            </div>
-
-            {/* Promises */}
-            <div className="bg-white border border-slate-100 rounded-3xl p-6">
-              <h3 className="font-bold text-slate-900 text-base mb-4">Our Promises</h3>
-              <ul className="space-y-3">
-                {[
-                  'Free doorstep inspection',
-                  'Upfront pricing before repair',
-                  'Genuine spare parts only',
-                  '90-day service warranty',
-                  'No fix = No charge',
-                ].map((p) => (
-                  <li key={p} className="flex items-center gap-3 text-sm text-slate-700">
-                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Hours */}
-            <div className="bg-orange-50 border border-orange-100 rounded-3xl p-6">
-              <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-5 h-5 text-orange-600" />
-                <h3 className="font-bold text-slate-900 text-base">Working Hours</h3>
+            {/* Service areas */}
+            <div className="border border-gray-200 bg-white rounded-2xl p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <MapPin className="w-4 h-4 text-blue-700" />
+                <p className="font-bold text-gray-900 text-sm">Service Areas</p>
               </div>
-              <p className="text-slate-700 font-semibold">Monday – Sunday</p>
-              <p className="text-orange-600 font-black text-lg">8:00 AM – 9:00 PM</p>
+              <div className="flex flex-wrap gap-1.5">
+                {['Anna Nagar', 'Adyar', 'Velachery', 'T. Nagar', 'OMR', 'Tambaram', 'Porur', 'Mylapore', 'Guindy', '+ more'].map((a) => (
+                  <span key={a} className="text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full">{a}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Working hours */}
+            <div className="border border-gray-200 bg-white rounded-2xl p-5">
+              <div className="flex items-center gap-2 mb-2">
+                <Clock className="w-4 h-4 text-blue-700" />
+                <p className="font-bold text-gray-900 text-sm">Working Hours</p>
+              </div>
+              <p className="text-gray-700 font-bold">Mon – Sun: 8AM – 9PM</p>
               <div className="flex items-center gap-1.5 mt-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-sm text-green-700 font-medium">Available Today</span>
+                <span className="text-xs text-green-700 font-medium">Available Now</span>
               </div>
             </div>
+
           </div>
         </div>
       </div>

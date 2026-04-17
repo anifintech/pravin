@@ -37,7 +37,7 @@ export default function Navbar() {
             </div>
             <div>
               <span className={`font-black text-xl leading-none ${scrolled ? 'text-blue-900' : 'text-white'}`}>
-                Pravin<span className={scrolled ? 'text-orange-500' : 'text-orange-400'}>Service</span>
+                Sai<span className={scrolled ? 'text-orange-500' : 'text-orange-400'}>Service</span>
               </span>
               <p className={`text-xs leading-none mt-0.5 ${scrolled ? 'text-slate-500' : 'text-blue-100'}`}>
                 Chennai's #1 Appliance Repair

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ServicePageTemplate from '@/components/sections/ServicePageTemplate'
 
 export const metadata: Metadata = {
-  title: 'Washing Machine Repair in Chennai | Doorstep Service – PravinService',
-  description: 'Expert washing machine repair at your doorstep in Chennai. Front load, top load, semi-automatic. Same-day service, 90-day warranty. Call +91 98765 43210.',
+  title: 'Washing Machine Repair in Chennai | Doorstep Service – Sai Service',
+  description: 'Expert washing machine repair at your doorstep in Chennai. Front load, top load, semi-automatic. Same-day service, . Call +91 98765 43210.',
 }
 
 const problems = [
@@ -25,7 +25,7 @@ const faq = [
   { q: 'Do you repair both front-load and top-load washing machines?', a: 'Yes! We repair all types — front-load, top-load (fully automatic), and semi-automatic washing machines from all major brands.' },
   { q: 'How quickly will the technician arrive?', a: 'Our technicians typically arrive within 60–90 minutes of booking confirmation. We offer same-day service across all major Chennai areas.' },
   { q: 'Do you carry spare parts?', a: 'Yes, our technicians carry commonly needed spare parts (belts, pumps, filters) in their service kits. For specific parts, we source genuine parts within 24 hours.' },
-  { q: 'What warranty do you provide?', a: 'All washing machine repairs come with a 90-day service warranty. If the same issue recurs within 90 days, we fix it at no extra charge.' },
+  { q: 'What warranty do you provide?', a: 'All washing machine repairs come with a service warranty. If the same issue recurs, we fix it at no extra charge.' },
 ]
 
 export default function WashingMachinePage() {
@@ -33,7 +33,7 @@ export default function WashingMachinePage() {
     <ServicePageTemplate
       title="Washing Machine Repair in Chennai"
       subtitle="Washing Machine Service"
-      description="Expert doorstep washing machine repair in Chennai by certified technicians. Front load, top load & semi-automatic machines fixed same day. Transparent pricing, genuine parts & 90-day warranty."
+      description="Expert doorstep washing machine repair in Chennai by certified technicians. Front load, top load & semi-automatic machines fixed same day. Transparent pricing, genuine parts & ."
       icon="🫧"
       color="bg-gradient-to-br from-blue-600 to-cyan-600"
       bgColor="bg-gradient-to-br from-blue-50 to-cyan-50"

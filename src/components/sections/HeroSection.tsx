@@ -45,7 +45,7 @@ export default function HeroSection() {
 
             <p className="text-lg text-blue-100 leading-relaxed mb-8 max-w-xl">
               Washing machine, refrigerator & dishwasher repairs at your home — same day service,
-              certified technicians & 90-day warranty on all repairs.
+              certified technicians &  on all repairs.
             </p>
 
             {/* CTA Buttons */}
@@ -75,7 +75,7 @@ export default function HeroSection() {
               </div>
               <div className="trust-badge">
                 <Shield className="w-4 h-4 text-green-400 flex-shrink-0" />
-                <span className="text-xs">90-Day Warranty</span>
+                <span className="text-xs">Quality Assured</span>
               </div>
               <div className="trust-badge">
                 <CheckCircle className="w-4 h-4 text-blue-400 flex-shrink-0" />

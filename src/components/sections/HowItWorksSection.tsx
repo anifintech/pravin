@@ -25,8 +25,8 @@ const steps = [
   },
   {
     step: '04',
-    title: 'Repair & Warranty',
-    description: 'Once you approve, we fix it right then. You get a 90-day warranty on the repair.',
+    title: 'Repair & Done',
+    description: "Once you approve, we fix it right then and you're good to go.",
     icon: '✅',
     color: 'bg-green-600',
   },

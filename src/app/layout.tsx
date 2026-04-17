@@ -12,13 +12,13 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "PravinService – Doorstep Appliance Repair in Chennai",
+  title: "Sai Service – Doorstep Appliance Repair in Chennai",
   description:
-    "Expert washing machine, refrigerator & dishwasher repair at your doorstep in Chennai. Same-day service, transparent pricing & 90-day warranty. Call +91 98765 43210.",
+    "Expert washing machine, refrigerator & dishwasher repair at your doorstep in Chennai. Same-day service, transparent pricing & . Call +91 98765 43210.",
   keywords:
     "washing machine repair Chennai, refrigerator repair Chennai, dishwasher repair Chennai, doorstep appliance service Chennai",
   openGraph: {
-    title: "PravinService – Doorstep Appliance Repair in Chennai",
+    title: "Sai Service – Doorstep Appliance Repair in Chennai",
     description:
       "Same-day doorstep appliance repair by certified technicians across Chennai.",
     type: "website",

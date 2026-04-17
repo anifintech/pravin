@@ -9,8 +9,8 @@ const features = [
   },
   {
     icon: Shield,
-    title: '90-Day Warranty',
-    description: 'Every repair comes with a 90-day service warranty. If the issue returns, we fix it free of charge.',
+    title: 'Quality Assured',
+    description: 'Every repair is done with genuine spare parts by certified technicians. Quality assured on every job.',
     color: 'bg-green-100 text-green-600',
   },
   {

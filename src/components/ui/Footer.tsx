@@ -27,12 +27,12 @@ export default function Footer() {
                 <Wrench className="w-5 h-5 text-white" />
               </div>
               <span className="font-black text-xl text-white">
-                Pravin<span className="text-orange-400">Service</span>
+                Sai<span className="text-orange-400">Service</span>
               </span>
             </div>
             <p className="text-sm leading-relaxed mb-6">
               Chennai's most trusted doorstep appliance repair service. Expert technicians,
-              transparent pricing & 90-day service warranty.
+              transparent pricing & 
             </p>
             <div className="flex gap-3">
               <a href="#" aria-label="Facebook" className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
@@ -130,7 +130,7 @@ export default function Footer() {
       <div className="border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} PravinService. All rights reserved.
+            © {new Date().getFullYear()} Sai Service. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-sm text-slate-500">
             <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ServicePageTemplate from '@/components/sections/ServicePageTemplate'
 
 export const metadata: Metadata = {
-  title: 'Refrigerator Repair in Chennai | Doorstep Service – PravinService',
-  description: 'Expert fridge & refrigerator repair at your doorstep in Chennai. Single door, double door, side-by-side. Same-day service, gas refilling & 90-day warranty. Call +91 98765 43210.',
+  title: 'Refrigerator Repair in Chennai | Doorstep Service – Sai Service',
+  description: 'Expert fridge & refrigerator repair at your doorstep in Chennai. Single door, double door, side-by-side. Same-day service, gas refilling & . Call +91 98765 43210.',
 }
 
 const problems = [
@@ -33,7 +33,7 @@ export default function RefrigeratorPage() {
     <ServicePageTemplate
       title="Refrigerator Repair in Chennai"
       subtitle="Fridge & Refrigerator Service"
-      description="Professional doorstep refrigerator repair in Chennai. Single door, double door & side-by-side fridges fixed same day. Gas refilling, compressor repair & thermostat replacement with 90-day warranty."
+      description="Professional doorstep refrigerator repair in Chennai. Single door, double door & side-by-side fridges fixed same day. Gas refilling, compressor repair & thermostat replacement with ."
       icon="🧊"
       color="bg-gradient-to-br from-indigo-600 to-blue-600"
       bgColor="bg-gradient-to-br from-indigo-50 to-blue-50"

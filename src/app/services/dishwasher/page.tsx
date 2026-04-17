@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import ServicePageTemplate from '@/components/sections/ServicePageTemplate'
 
 export const metadata: Metadata = {
-  title: 'Dishwasher Repair in Chennai | Doorstep Service – PravinService',
-  description: 'Expert dishwasher repair at your doorstep in Chennai. All brands including Bosch, IFB, Siemens. Same-day service, error code diagnosis & 90-day warranty. Call +91 98765 43210.',
+  title: 'Dishwasher Repair in Chennai | Doorstep Service – Sai Service',
+  description: 'Expert dishwasher repair at your doorstep in Chennai. All brands including Bosch, IFB, Siemens. Same-day service, error code diagnosis & . Call +91 98765 43210.',
 }
 
 const problems = [
@@ -33,7 +33,7 @@ export default function DishwasherPage() {
     <ServicePageTemplate
       title="Dishwasher Repair in Chennai"
       subtitle="Dishwasher Service"
-      description="Certified doorstep dishwasher repair in Chennai. All brands — Bosch, IFB, Siemens, LG & more. Error code diagnosis, drain & pump repair. Transparent pricing & 90-day service warranty."
+      description="Certified doorstep dishwasher repair in Chennai. All brands — Bosch, IFB, Siemens, LG & more. Error code diagnosis, drain & pump repair. Transparent pricing."
       icon="🍽️"
       color="bg-gradient-to-br from-orange-500 to-red-600"
       bgColor="bg-gradient-to-br from-orange-50 to-red-50"
