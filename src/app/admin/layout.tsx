@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { LayoutDashboard, Users, Settings, Wrench, LogOut } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Admin Panel – Sai Service',
+  title: 'Admin Panel – FixIt Chennai',
   robots: { index: false, follow: false },
 }
 
@@ -24,7 +24,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Wrench className="w-4 h-4 text-white" />
             </div>
             <span className="font-black text-white text-base">
-              Sai<span className="text-orange-400">Admin</span>
+              FixIt<span className="text-orange-400">Admin</span>
             </span>
           </div>
         </div>
@@ -62,7 +62,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <h1 className="text-slate-900 font-bold text-lg">Admin Panel</h1>
           <div className="flex items-center gap-2 text-sm text-slate-500">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            Sai Service Chennai
+            FixIt Chennai Chennai
           </div>
         </header>
 

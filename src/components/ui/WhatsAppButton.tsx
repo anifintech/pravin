@@ -1,7 +1,7 @@
 'use client'
 
 export default function WhatsAppButton() {
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
+  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919500093757'
   const message = encodeURIComponent('Hi! I need appliance repair service in Chennai. Please help.')
   const url = `https://wa.me/${phone}?text=${message}`
 

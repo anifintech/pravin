@@ -27,12 +27,11 @@ export default function Footer() {
                 <Wrench className="w-5 h-5 text-white" />
               </div>
               <span className="font-black text-xl text-white">
-                Sai<span className="text-orange-400">Service</span>
+                FixIt<span className="text-orange-400">Chennai</span>
               </span>
             </div>
             <p className="text-sm leading-relaxed mb-6">
-              Chennai's most trusted doorstep appliance repair service. Expert technicians,
-              transparent pricing & 
+              Chennai's most trusted doorstep appliance repair service. Expert technicians, genuine parts & transparent pricing.
             </p>
             <div className="flex gap-3">
               <a href="#" aria-label="Facebook" className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
@@ -82,24 +81,24 @@ export default function Footer() {
             <h4 className="text-white font-bold text-base mb-5">Contact Us</h4>
             <ul className="space-y-4">
               <li>
-                <a href="tel:+919876543210" className="flex items-start gap-3 hover:text-white transition-colors group">
+                <a href="tel:+919500093757" className="flex items-start gap-3 hover:text-white transition-colors group">
                   <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 transition-colors">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
                     <p className="text-xs text-slate-500 mb-0.5">Call / WhatsApp</p>
-                    <p className="text-sm font-semibold text-white">+91 98765 43210</p>
+                    <p className="text-sm font-semibold text-white">+91 95000 93757</p>
                   </div>
                 </a>
               </li>
               <li>
-                <a href="mailto:info@pravinservice.in" className="flex items-start gap-3 hover:text-white transition-colors group">
+                <a href="mailto:info@fixitchennai.in" className="flex items-start gap-3 hover:text-white transition-colors group">
                   <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 transition-colors">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
                     <p className="text-xs text-slate-500 mb-0.5">Email</p>
-                    <p className="text-sm text-white">info@pravinservice.in</p>
+                    <p className="text-sm text-white">info@fixitchennai.in</p>
                   </div>
                 </a>
               </li>
@@ -130,7 +129,7 @@ export default function Footer() {
       <div className="border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} Sai Service. All rights reserved.
+            © {new Date().getFullYear()} FixIt Chennai. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-sm text-slate-500">
             <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>

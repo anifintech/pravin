@@ -11,10 +11,10 @@ import QuickBookingSection from '@/components/sections/QuickBookingSection'
 import { LocalBusinessJsonLd } from '@/components/SEO/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Sai Service – Washing Machine & Fridge Repair Chennai | Same Day Doorstep',
+  title: 'FixIt Chennai – Washing Machine & Fridge Repair Chennai | Same Day Doorstep',
   description:
-    'Best appliance repair service in Chennai. Washing machine, refrigerator & dishwasher repair at your doorstep — same day, certified technicians, transparent pricing. Call +91 98765 43210.',
-  alternates: { canonical: 'https://saiservice.in' },
+    'Best appliance repair service in Chennai. Washing machine, refrigerator & dishwasher repair at your doorstep — same day, certified technicians, transparent pricing. Call +91 95000 93757.',
+  alternates: { canonical: 'https://fixitchennai.in' },
 }
 
 export default function Home() {

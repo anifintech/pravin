@@ -27,7 +27,8 @@
       "Bash(sed -i '' 's/You get a  on the repair\\\\./Once approved, we fix it right then and you'\\\\''re good to go./g' src/components/sections/HowItWorksSection.tsx)",
       "Bash(sed -i '' 's/'\\\\''Same-Day Repair'\\\\'', '\\\\'''\\\\''/'\\\\''Same-Day Repair'\\\\'', '\\\\''Genuine Spare Parts'\\\\''/g; \\\\ *)",
       "Bash(sed -i '' 's/<span className=\"text-xs\"><\\\\/span>/<span className=\"text-xs\">Quality Assured<\\\\/span>/g' src/components/sections/HeroSection.tsx)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(xargs sed *)"
     ]
   }
 }

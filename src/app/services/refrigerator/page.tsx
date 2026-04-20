@@ -5,18 +5,18 @@ import { ServiceJsonLd } from '@/components/SEO/JsonLd'
 export const metadata: Metadata = {
   title: 'Refrigerator Repair in Chennai | Fridge Repair Same Day Doorstep',
   description:
-    'Expert fridge & refrigerator repair at your doorstep in Chennai. Single door, double door, side-by-side. Gas refilling, compressor repair. Starting ₹399. Call +91 98765 43210.',
+    'Expert fridge & refrigerator repair at your doorstep in Chennai. Single door, double door, side-by-side. Gas refilling, compressor repair. Starting ₹399. Call +91 95000 93757.',
   keywords: [
     'refrigerator repair Chennai', 'fridge repair Chennai', 'fridge not cooling Chennai',
     'refrigerator gas refilling Chennai', 'compressor repair Chennai',
     'Samsung fridge repair Chennai', 'LG refrigerator repair Chennai',
     'double door fridge repair Chennai', 'fridge repair Anna Nagar', 'fridge repair Adyar',
   ],
-  alternates: { canonical: 'https://saiservice.in/services/refrigerator' },
+  alternates: { canonical: 'https://fixitchennai.in/services/refrigerator' },
   openGraph: {
-    title: 'Refrigerator Repair in Chennai | Sai Service',
+    title: 'Refrigerator Repair in Chennai | FixIt Chennai',
     description: 'Doorstep fridge repair in Chennai. Gas refilling, compressor & thermostat repair. Starting ₹399.',
-    url: 'https://saiservice.in/services/refrigerator',
+    url: 'https://fixitchennai.in/services/refrigerator',
   },
 }
 
@@ -48,7 +48,7 @@ export default function RefrigeratorPage() {
       <ServiceJsonLd
         name="Refrigerator Repair in Chennai"
         description="Professional doorstep refrigerator repair in Chennai. Single door, double door & side-by-side fridges fixed same day. Gas refilling, compressor repair & thermostat replacement."
-        url="https://saiservice.in/services/refrigerator"
+        url="https://fixitchennai.in/services/refrigerator"
         price="399"
         faq={faq}
       />

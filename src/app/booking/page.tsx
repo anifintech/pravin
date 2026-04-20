@@ -86,7 +86,7 @@ export default function BookingPage() {
       if (!res.ok) throw new Error(result.error || 'Submission failed')
       setSubmitted(true)
     } catch {
-      toast.error('Something went wrong. Please call us directly at +91 98765 43210')
+      toast.error('Something went wrong. Please call us directly at +91 95000 93757')
     } finally {
       setIsLoading(false)
     }
@@ -105,8 +105,8 @@ export default function BookingPage() {
           </p>
           <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-left">
             <p className="text-xs font-semibold text-blue-800 uppercase tracking-wide mb-2">Need immediate help?</p>
-            <a href="tel:+919876543210" className="flex items-center gap-2 text-blue-700 font-bold text-sm">
-              <Phone className="w-4 h-4" /> +91 98765 43210
+            <a href="tel:+919500093757" className="flex items-center gap-2 text-blue-700 font-bold text-sm">
+              <Phone className="w-4 h-4" /> +91 95000 93757
             </a>
           </div>
           <Link href="/" className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-3 rounded-lg text-sm transition-colors">
@@ -381,9 +381,9 @@ export default function BookingPage() {
             <div className="bg-[#0d3a70] text-white rounded-2xl p-5">
               <p className="text-blue-300 text-xs font-semibold uppercase tracking-wide mb-1">Prefer to call?</p>
               <p className="font-bold text-lg mb-3">Talk to our team directly</p>
-              <a href="tel:+919876543210"
+              <a href="tel:+919500093757"
                 className="flex items-center gap-3 bg-white text-blue-800 font-bold px-4 py-3 rounded-xl hover:bg-blue-50 transition-colors text-sm">
-                <Phone className="w-5 h-5" /> +91 98765 43210
+                <Phone className="w-5 h-5" /> +91 95000 93757
               </a>
               <p className="text-blue-300 text-xs mt-3">Mon – Sun • 8AM to 9PM</p>
             </div>
@@ -392,7 +392,7 @@ export default function BookingPage() {
             <div className="border border-gray-200 bg-white rounded-2xl p-5">
               <p className="font-bold text-gray-900 text-sm mb-1">Chat on WhatsApp</p>
               <p className="text-gray-500 text-xs mb-3">Send photos for faster diagnosis</p>
-              <a href={`https://wa.me/919876543210?text=${encodeURIComponent('Hi! I need appliance repair in Chennai.')}`}
+              <a href={`https://wa.me/919500093757?text=${encodeURIComponent('Hi! I need appliance repair in Chennai.')}`}
                 target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-3 rounded-xl transition-colors text-sm">
                 <MessageCircle className="w-5 h-5" /> WhatsApp Us

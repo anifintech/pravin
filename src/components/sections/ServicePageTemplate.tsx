@@ -41,9 +41,9 @@ export default function ServicePageTemplate({
                   Book Service Now
                   <ArrowRight className="w-5 h-5" />
                 </Link>
-                <a href="tel:+919876543210" className="flex items-center gap-2 bg-white border-2 border-slate-200 text-slate-800 font-bold px-6 py-3.5 rounded-xl hover:border-blue-300 transition-colors">
+                <a href="tel:+919500093757" className="flex items-center gap-2 bg-white border-2 border-slate-200 text-slate-800 font-bold px-6 py-3.5 rounded-xl hover:border-blue-300 transition-colors">
                   <Phone className="w-5 h-5 text-blue-600" />
-                  +91 98765 43210
+                  +91 95000 93757
                 </a>
               </div>
 
@@ -147,7 +147,7 @@ export default function ServicePageTemplate({
               Book Service Now
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <a href="tel:+919876543210" className="btn-secondary text-base px-8 py-4">
+            <a href="tel:+919500093757" className="btn-secondary text-base px-8 py-4">
               <Phone className="w-5 h-5" />
               Call Now
             </a>

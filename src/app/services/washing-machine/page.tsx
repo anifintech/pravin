@@ -5,7 +5,7 @@ import { ServiceJsonLd } from '@/components/SEO/JsonLd'
 export const metadata: Metadata = {
   title: 'Washing Machine Repair in Chennai | Same Day Doorstep Service',
   description:
-    'Expert washing machine repair at your doorstep in Chennai. Front load, top load, semi-automatic. Samsung, LG, Whirlpool, IFB repaired same day. Starting ₹299. Call +91 98765 43210.',
+    'Expert washing machine repair at your doorstep in Chennai. Front load, top load, semi-automatic. Samsung, LG, Whirlpool, IFB repaired same day. Starting ₹299. Call +91 95000 93757.',
   keywords: [
     'washing machine repair Chennai',
     'washing machine repair near me Chennai',
@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     'washing machine service Adyar',
     'washing machine service OMR',
   ],
-  alternates: { canonical: 'https://saiservice.in/services/washing-machine' },
+  alternates: { canonical: 'https://fixitchennai.in/services/washing-machine' },
   openGraph: {
-    title: 'Washing Machine Repair in Chennai | Sai Service',
+    title: 'Washing Machine Repair in Chennai | FixIt Chennai',
     description: 'Doorstep washing machine repair in Chennai. Starting ₹299.',
-    url: 'https://saiservice.in/services/washing-machine',
+    url: 'https://fixitchennai.in/services/washing-machine',
   },
 }
 
@@ -57,7 +57,7 @@ export default function WashingMachinePage() {
       <ServiceJsonLd
         name="Washing Machine Repair in Chennai"
         description="Expert doorstep washing machine repair in Chennai. Front load, top load & semi-automatic machines fixed same day."
-        url="https://saiservice.in/services/washing-machine"
+        url="https://fixitchennai.in/services/washing-machine"
         price="299"
         faq={faqForSchema}
       />

@@ -232,7 +232,7 @@ export default async function AdminDashboard() {
               <ArrowRight className="w-4 h-4 text-blue-500" />
             </a>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Submit <strong>saiservice.in/sitemap.xml</strong> in Google Search Console to track Chennai keyword rankings.
+              Submit <strong>fixitchennai.in/sitemap.xml</strong> in Google Search Console to track Chennai keyword rankings.
             </p>
           </div>
         </div>

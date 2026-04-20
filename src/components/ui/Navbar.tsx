@@ -37,7 +37,7 @@ export default function Navbar() {
             </div>
             <div>
               <span className={`font-black text-xl leading-none ${scrolled ? 'text-blue-900' : 'text-white'}`}>
-                Sai<span className={scrolled ? 'text-orange-500' : 'text-orange-400'}>Service</span>
+                FixIt<span className={scrolled ? 'text-orange-500' : 'text-orange-400'}>Chennai</span>
               </span>
               <p className={`text-xs leading-none mt-0.5 ${scrolled ? 'text-slate-500' : 'text-blue-100'}`}>
                 Chennai's #1 Appliance Repair
@@ -71,7 +71,7 @@ export default function Navbar() {
               }`}
             >
               <Phone className="w-4 h-4" />
-              +91 98765 43210
+              +91 95000 93757
             </a>
             <Link
               href="/booking"
@@ -107,11 +107,11 @@ export default function Navbar() {
             ))}
             <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
               <a
-                href="tel:+919876543210"
+                href="tel:+919500093757"
                 className="flex items-center gap-2 px-4 py-3 text-blue-600 font-semibold"
               >
                 <Phone className="w-4 h-4" />
-                +91 98765 43210
+                +91 95000 93757
               </a>
               <Link
                 href="/booking"

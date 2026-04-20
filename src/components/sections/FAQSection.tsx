@@ -84,8 +84,8 @@ export default function FAQSection() {
 
         <p className="text-center text-slate-500 text-sm mt-10">
           Still have questions?{' '}
-          <a href="tel:+919876543210" className="text-blue-600 font-bold hover:underline">
-            Call us at +91 98765 43210
+          <a href="tel:+919500093757" className="text-blue-600 font-bold hover:underline">
+            Call us at +91 95000 93757
           </a>
           {' '}— we're happy to help.
         </p>

@@ -12,16 +12,16 @@ const geistSans = Geist({
   subsets: ['latin'],
 })
 
-const siteUrl = 'https://saiservice.in'
+const siteUrl = 'https://fixitchennai.in'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Sai Service – Washing Machine & Fridge Repair Chennai | Same Day',
-    template: '%s | Sai Service Chennai',
+    default: 'FixIt Chennai – Washing Machine & Fridge Repair Chennai | Same Day',
+    template: '%s | FixIt Chennai',
   },
   description:
-    'Trusted doorstep washing machine, refrigerator & dishwasher repair in Chennai. Certified technicians, genuine parts, transparent pricing. Call +91 98765 43210 — same-day service 8AM to 9PM.',
+    'Trusted doorstep washing machine, refrigerator & dishwasher repair in Chennai. Certified technicians, genuine parts, transparent pricing. Call +91 95000 93757 — same-day service 8AM to 9PM.',
   keywords: [
     'washing machine repair Chennai',
     'refrigerator repair Chennai',
@@ -44,23 +44,23 @@ export const metadata: Metadata = {
     'fridge not cooling Chennai',
     'washing machine not working Chennai',
   ],
-  authors: [{ name: 'Sai Service' }],
-  creator: 'Sai Service',
-  publisher: 'Sai Service',
+  authors: [{ name: 'FixIt Chennai' }],
+  creator: 'FixIt Chennai',
+  publisher: 'FixIt Chennai',
   formatDetection: { telephone: true, email: false },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
     url: siteUrl,
-    siteName: 'Sai Service',
-    title: 'Sai Service – Washing Machine & Fridge Repair Chennai | Same Day',
+    siteName: 'FixIt Chennai',
+    title: 'FixIt Chennai – Washing Machine & Fridge Repair Chennai | Same Day',
     description:
       'Certified doorstep appliance repair in Chennai. Washing machines, fridges & dishwashers fixed same day. 5,000+ happy customers.',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Sai Service – Appliance Repair Chennai' }],
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'FixIt Chennai – Appliance Repair Chennai' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sai Service – Appliance Repair Chennai',
+    title: 'FixIt Chennai – Appliance Repair Chennai',
     description: 'Same-day doorstep repair for washing machines, fridges & dishwashers in Chennai.',
     images: ['/og-image.jpg'],
   },

@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { Phone, Star, CheckCircle, Clock, Shield, ArrowRight } from 'lucide-react'
 
 export default function HeroSection() {
-  const phone = '+91 98765 43210'
-  const waPhone = '919876543210'
+  const phone = '+91 95000 93757'
+  const waPhone = '919500093757'
   const waMsg = encodeURIComponent('Hi! I need appliance repair service in Chennai.')
 
   return (

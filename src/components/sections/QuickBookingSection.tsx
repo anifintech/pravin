@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Phone, MessageCircle, ArrowRight } from 'lucide-react'
 
 export default function QuickBookingSection() {
-  const waPhone = '919876543210'
+  const waPhone = '919500093757'
   const waMsg = encodeURIComponent('Hi! I need appliance repair service in Chennai. Please help.')
 
   return (
@@ -22,11 +22,11 @@ export default function QuickBookingSection() {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
             <a
-              href="tel:+919876543210"
+              href="tel:+919500093757"
               className="flex items-center gap-3 bg-white text-orange-600 font-bold px-6 py-4 rounded-2xl hover:bg-orange-50 transition-all hover:shadow-xl hover:-translate-y-1"
             >
               <Phone className="w-5 h-5" />
-              Call +91 98765 43210
+              Call +91 95000 93757
             </a>
             <a
               href={`https://wa.me/${waPhone}?text=${waMsg}`}
