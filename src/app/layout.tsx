@@ -6,6 +6,7 @@ import Footer from '@/components/ui/Footer'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
 import { Toaster } from 'react-hot-toast'
 import { Analytics } from '@vercel/analytics/react'
+import PageTracker from '@/components/ui/PageTracker'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -91,6 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <Analytics />
+        <PageTracker />
       </body>
     </html>
   )
