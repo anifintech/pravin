@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -39,7 +39,12 @@ const timeSlots = [
   '4:00 PM – 6:00 PM', '6:00 PM – 9:00 PM',
 ]
 
-const brands = ['Samsung', 'LG', 'Whirlpool', 'IFB', 'Bosch', 'Godrej', 'Haier', 'Panasonic', 'Voltas', 'Other']
+const FALLBACK_BRANDS: Record<string, string[]> = {
+  'washing-machine': ['Samsung', 'LG', 'Whirlpool', 'IFB', 'Bosch', 'Godrej', 'Haier', 'Panasonic', 'Voltas'],
+  'refrigerator':    ['Samsung', 'LG', 'Whirlpool', 'Godrej', 'Blue Star', 'Haier', 'Bosch', 'Voltas'],
+  'dishwasher':      ['Bosch', 'IFB', 'Siemens', 'LG', 'Samsung', 'Voltas Beko'],
+  'other':           ['Samsung', 'LG', 'Whirlpool', 'Other'],
+}
 
 const serviceOptions = [
   { value: 'washing-machine', label: 'Washing Machine', icon: '🫧', desc: 'Front load, top load, semi-auto' },
@@ -59,6 +64,24 @@ export default function BookingPage() {
   const [submitted, setSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [step, setStep] = useState(1)
+  const [brandsByCategory, setBrandsByCategory] = useState<Record<string, string[]>>(FALLBACK_BRANDS)
+
+  useEffect(() => {
+    fetch('/api/admin/appliances')
+      .then(r => r.json())
+      .then(data => {
+        if (!data.appliances?.length) return
+        const grouped: Record<string, string[]> = {}
+        data.appliances
+          .filter((a: { active: boolean }) => a.active)
+          .forEach((a: { category: string; brand: string }) => {
+            if (!grouped[a.category]) grouped[a.category] = []
+            grouped[a.category].push(a.brand)
+          })
+        if (Object.keys(grouped).length > 0) setBrandsByCategory({ ...FALLBACK_BRANDS, ...grouped })
+      })
+      .catch(() => {})
+  }, [])
 
   const { register, handleSubmit, formState: { errors }, watch, trigger, setError } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -254,7 +277,10 @@ export default function BookingPage() {
                       <select {...register('appliance_brand')}
                         className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:border-blue-600 focus:outline-none bg-white">
                         <option value="">Select brand</option>
-                        {brands.map((b) => <option key={b} value={b}>{b}</option>)}
+                        {(brandsByCategory[serviceType] || brandsByCategory['other']).map((b) => (
+                          <option key={b} value={b}>{b}</option>
+                        ))}
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                     <div>
