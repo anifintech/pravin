@@ -15,7 +15,7 @@ const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   phone: z.string().regex(/^[6-9]\d{9}$/, 'Enter a valid 10-digit Indian mobile number'),
   email: z.string().email('Enter a valid email').optional().or(z.literal('')),
-  service_type: z.enum(['washing-machine', 'refrigerator', 'dishwasher', 'other']),
+  service_type: z.string().min(1, 'Please select an appliance type'),
   appliance_brand: z.string().optional(),
   issue_description: z.string().min(10, 'Please describe the issue in at least 10 characters'),
   address: z.string().min(10, 'Enter your full address'),
@@ -46,11 +46,12 @@ const FALLBACK_BRANDS: Record<string, string[]> = {
   'other':           ['Samsung', 'LG', 'Whirlpool', 'Other'],
 }
 
-const serviceOptions = [
+type ServiceOption = { value: string; label: string; icon: string; desc: string }
+
+const FALLBACK_SERVICE_OPTIONS: ServiceOption[] = [
   { value: 'washing-machine', label: 'Washing Machine', icon: '🫧', desc: 'Front load, top load, semi-auto' },
   { value: 'refrigerator', label: 'Refrigerator', icon: '🧊', desc: 'Single door, double door, side-by-side' },
   { value: 'dishwasher', label: 'Dishwasher', icon: '🍽️', desc: 'All brands & models' },
-  { value: 'other', label: 'Other Appliance', icon: '🔧', desc: 'Describe your appliance' },
 ]
 
 const steps = [
@@ -65,8 +66,27 @@ export default function BookingPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [step, setStep] = useState(1)
   const [brandsByCategory, setBrandsByCategory] = useState<Record<string, string[]>>(FALLBACK_BRANDS)
+  const [serviceOptions, setServiceOptions] = useState<ServiceOption[]>(FALLBACK_SERVICE_OPTIONS)
 
   useEffect(() => {
+    // Load dynamic categories
+    fetch('/api/admin/categories')
+      .then(r => r.json())
+      .then(data => {
+        if (!data.categories?.length) return
+        const opts: ServiceOption[] = data.categories
+          .filter((c: { active: boolean }) => c.active)
+          .map((c: { slug: string; name: string; icon: string; description: string }) => ({
+            value: c.slug,
+            label: c.name,
+            icon: c.icon,
+            desc: c.description || '',
+          }))
+        if (opts.length > 0) setServiceOptions(opts)
+      })
+      .catch(() => {})
+
+    // Load dynamic brands
     fetch('/api/admin/appliances')
       .then(r => r.json())
       .then(data => {

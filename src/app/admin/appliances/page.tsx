@@ -1,33 +1,53 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { Plus, Trash2, Check, X } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 import toast from 'react-hot-toast'
 
 interface Appliance { id: string; category: string; brand: string; active: boolean }
+interface Category { slug: string; name: string; icon: string }
 
-const CATEGORIES = [
-  { value: 'washing-machine', label: '🫧 Washing Machine' },
-  { value: 'refrigerator',    label: '🧊 Refrigerator' },
-  { value: 'dishwasher',      label: '🍽️ Dishwasher' },
-]
-
-export default function AppliancesPage() {
+function AppliancesContent() {
+  const searchParams = useSearchParams()
   const [appliances, setAppliances] = useState<Appliance[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState('washing-machine')
+  const [activeTab, setActiveTab] = useState('')
   const [newBrand, setNewBrand] = useState('')
   const [adding, setAdding] = useState(false)
 
-  const load = async () => {
+  const loadAll = async () => {
     setLoading(true)
-    const res = await fetch('/api/admin/appliances')
-    const data = await res.json()
-    setAppliances(data.appliances || [])
+    const [catRes, appRes] = await Promise.all([
+      fetch('/api/admin/categories'),
+      fetch('/api/admin/appliances'),
+    ])
+    const catData = await catRes.json()
+    const appData = await appRes.json()
+    const cats: Category[] = (catData.categories || []).map((c: { slug: string; name: string; icon: string }) => ({
+      slug: c.slug, name: c.name, icon: c.icon,
+    }))
+    setCategories(cats)
+    setAppliances(appData.appliances || [])
+
+    // Set active tab: prefer URL param, then first category
+    const urlCat = searchParams.get('category')
+    if (urlCat && cats.find(c => c.slug === urlCat)) {
+      setActiveTab(urlCat)
+    } else if (cats.length > 0) {
+      setActiveTab(prev => prev || cats[0].slug)
+    }
     setLoading(false)
   }
 
-  useEffect(() => { load() }, [])
+  const load = async () => {
+    const res = await fetch('/api/admin/appliances')
+    const data = await res.json()
+    setAppliances(data.appliances || [])
+  }
+
+  useEffect(() => { loadAll() }, [])
 
   const filtered = appliances.filter(a => a.category === activeTab)
 
@@ -65,33 +85,42 @@ export default function AppliancesPage() {
     setAppliances(prev => prev.filter(a => a.id !== id))
   }
 
-  const activeLabel = CATEGORIES.find(c => c.value === activeTab)?.label
+  const activeCat = categories.find(c => c.slug === activeTab)
+  const activeLabel = activeCat ? `${activeCat.icon} ${activeCat.name}` : activeTab
 
   return (
     <div className="space-y-6 max-w-2xl">
       <div>
-        <h2 className="text-2xl font-black text-slate-900">Manage Appliances</h2>
+        <h2 className="text-2xl font-black text-slate-900">Manage Brands</h2>
         <p className="text-slate-500 text-sm mt-0.5">
-          Brands shown in the booking form when customer selects an appliance type.
+          Brands shown in the booking form when a customer selects an appliance type.
         </p>
       </div>
 
       {/* Category tabs */}
-      <div className="flex gap-2 bg-slate-100 p-1 rounded-xl">
-        {CATEGORIES.map(cat => (
-          <button
-            key={cat.value}
-            onClick={() => setActiveTab(cat.value)}
-            className={`flex-1 py-2 px-3 rounded-lg text-sm font-bold transition-all ${
-              activeTab === cat.value
-                ? 'bg-white text-slate-900 shadow-sm'
-                : 'text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
+      {loading ? (
+        <div className="bg-slate-100 p-4 rounded-xl text-slate-400 text-sm text-center">Loading categories…</div>
+      ) : categories.length === 0 ? (
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-700">
+          No categories yet. <a href="/admin/categories" className="font-bold underline">Add categories first →</a>
+        </div>
+      ) : (
+        <div className="flex flex-wrap gap-2 bg-slate-100 p-1 rounded-xl">
+          {categories.map(cat => (
+            <button
+              key={cat.slug}
+              onClick={() => setActiveTab(cat.slug)}
+              className={`py-2 px-3 rounded-lg text-sm font-bold transition-all ${
+                activeTab === cat.slug
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              {cat.icon} {cat.name}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Add brand */}
       <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
@@ -164,5 +193,13 @@ export default function AppliancesPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function AppliancesPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-slate-400 text-sm">Loading…</div>}>
+      <AppliancesContent />
+    </Suspense>
   )
 }
