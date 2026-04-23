@@ -9,6 +9,7 @@ import FAQSection from '@/components/sections/FAQSection'
 import AreasSection from '@/components/sections/AreasSection'
 import QuickBookingSection from '@/components/sections/QuickBookingSection'
 import { LocalBusinessJsonLd } from '@/components/SEO/JsonLd'
+import BrandsBar from '@/components/sections/BrandsBar'
 
 export const metadata: Metadata = {
   title: 'FixIt Chennai – Washing Machine & Fridge Repair Chennai | Same Day Doorstep',
@@ -21,7 +22,7 @@ export default function Home() {
   return (
     <>
       <LocalBusinessJsonLd />
-      <HeroSection />
+      <HeroSection brandsBar={<BrandsBar />} />
       <ServicesSection />
       <WhyUsSection />
       <HowItWorksSection />

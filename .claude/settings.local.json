@@ -28,7 +28,14 @@
       "Bash(sed -i '' 's/'\\\\''Same-Day Repair'\\\\'', '\\\\'''\\\\''/'\\\\''Same-Day Repair'\\\\'', '\\\\''Genuine Spare Parts'\\\\''/g; \\\\ *)",
       "Bash(sed -i '' 's/<span className=\"text-xs\"><\\\\/span>/<span className=\"text-xs\">Quality Assured<\\\\/span>/g' src/components/sections/HeroSection.tsx)",
       "Bash(git push *)",
-      "Bash(xargs sed *)"
+      "Bash(xargs sed *)",
+      "mcp__a588db79-ed41-4f63-922f-e387c18ef15c__list_teams",
+      "mcp__a588db79-ed41-4f63-922f-e387c18ef15c__list_projects",
+      "mcp__a588db79-ed41-4f63-922f-e387c18ef15c__get_deployment",
+      "mcp__a588db79-ed41-4f63-922f-e387c18ef15c__get_project",
+      "mcp__a588db79-ed41-4f63-922f-e387c18ef15c__get_runtime_logs",
+      "mcp__a588db79-ed41-4f63-922f-e387c18ef15c__get_deployment_build_logs",
+      "mcp__a588db79-ed41-4f63-922f-e387c18ef15c__web_fetch_vercel_url"
     ]
   }
 }

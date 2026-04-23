@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { LayoutDashboard, Users, BarChart2, Wrench, LogOut } from 'lucide-react'
+import { LayoutDashboard, Users, BarChart2, Wrench, LogOut, Tag } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Admin Panel – FixIt Chennai',
@@ -11,6 +11,7 @@ const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/leads', label: 'Leads', icon: Users },
   { href: '/admin/analytics', label: 'Visitors', icon: BarChart2 },
+  { href: '/admin/brands', label: 'Brands', icon: Tag },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

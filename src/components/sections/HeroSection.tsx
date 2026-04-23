@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import { Phone, Star, CheckCircle, Clock, Shield, ArrowRight } from 'lucide-react'
+import { ReactNode } from 'react'
 
-export default function HeroSection() {
+export default function HeroSection({ brandsBar }: { brandsBar?: ReactNode }) {
   const phone = '+91 95000 93757'
   const waPhone = '919500093757'
   const waMsg = encodeURIComponent('Hi! I need appliance repair service in Chennai.')
@@ -95,7 +96,7 @@ export default function HeroSection() {
                     { value: '5000+', label: 'Happy Customers' },
                     { value: '98%', label: 'Satisfaction Rate' },
                     { value: '60 Min', label: 'Avg. Response Time' },
-                    { value: '90 Days', label: 'Service Warranty' },
+                    { value: 'Free', label: 'Inspection Visit' },
                   ].map((stat) => (
                     <div key={stat.label} className="text-center bg-white/10 rounded-2xl p-4">
                       <div className="text-3xl font-black text-orange-400 mb-1">{stat.value}</div>
@@ -142,17 +143,8 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Bottom brand logos */}
-        <div className="mt-16 pt-10 border-t border-white/10">
-          <p className="text-center text-sm text-blue-300 font-medium mb-6">We Service All Major Brands</p>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
-            {['Samsung', 'LG', 'Whirlpool', 'IFB', 'Bosch', 'Godrej', 'Haier', 'Voltas'].map((brand) => (
-              <span key={brand} className="text-white/60 font-bold text-sm hover:text-white transition-colors">
-                {brand}
-              </span>
-            ))}
-          </div>
-        </div>
+        {/* brands rendered via BrandsBar server component passed as prop */}
+        {brandsBar}
       </div>
     </section>
   )
