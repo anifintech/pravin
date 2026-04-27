@@ -36,6 +36,22 @@ const faqs = [
     q: 'Do you service all brands of washing machines?',
     a: 'Yes — Samsung, LG, Whirlpool, IFB, Bosch, Godrej, Haier, Panasonic, Videocon, Voltas, Onida, Siemens and all other brands. Our technicians are trained across all major brands.',
   },
+  {
+    q: 'Do you repair AC (air conditioners) in Chennai?',
+    a: 'Yes! We repair all types of ACs — split AC, window AC, cassette AC and inverter AC. Services include gas refilling, compressor repair, PCB repair, cleaning and installation. We cover all brands: LG, Samsung, Daikin, Voltas, Blue Star, Hitachi, Carrier, O\'General.',
+  },
+  {
+    q: 'Do you repair TVs in Chennai?',
+    a: 'Yes, we repair LED, LCD, OLED and Smart TVs at your doorstep in Chennai. Common issues like no display, lines on screen, no sound, backlight failure and motherboard repair are all covered. Brands: Samsung, LG, Sony, OnePlus, Mi, TCL, Panasonic.',
+  },
+  {
+    q: 'Do you repair microwave ovens in Chennai?',
+    a: 'Yes! We repair solo, grill and convection microwave ovens at your doorstep. Common repairs include magnetron replacement, door switch repair, turntable motor and PCB issues. All brands serviced — Samsung, LG, IFB, Godrej, Whirlpool.',
+  },
+  {
+    q: 'Do you offer AC gas refilling in Chennai?',
+    a: 'Yes. We handle AC gas leak detection and refilling for all gas types — R22, R32, R410a and R290. Our technicians carry gas charging equipment and will top up or fully refill your AC gas on the same visit.',
+  },
 ]
 
 export default function FAQSection() {

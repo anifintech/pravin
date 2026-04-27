@@ -7,6 +7,8 @@ const areas = [
   'T. Nagar', 'Mylapore', 'Nungambakkam', 'Guindy',
   'Besant Nagar', 'Sholinganallur', 'Pallavaram', 'Medavakkam',
   'Kovilambakkam', 'Perambur', 'Egmore', 'Royapettah',
+  'Mogappair', 'Ambattur', 'Avadi', 'Poonamallee',
+  'Thoraipakkam', 'Navalur', 'Virugambakkam', 'KK Nagar',
 ]
 
 export default function AreasSection() {

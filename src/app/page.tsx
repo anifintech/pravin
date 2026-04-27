@@ -12,9 +12,9 @@ import { LocalBusinessJsonLd } from '@/components/SEO/JsonLd'
 import BrandsBar from '@/components/sections/BrandsBar'
 
 export const metadata: Metadata = {
-  title: 'FixIt Chennai – Washing Machine & Fridge Repair Chennai | Same Day Doorstep',
+  title: 'FixIt Chennai – AC, Washing Machine & Fridge Repair Chennai | Same Day',
   description:
-    'Best appliance repair service in Chennai. Washing machine, refrigerator & dishwasher repair at your doorstep — same day, certified technicians, transparent pricing. Call +91 95000 93757.',
+    'Best home appliance repair in Chennai. AC, washing machine, refrigerator, TV & dishwasher repair at your doorstep — same day service, certified technicians, transparent pricing. Call +91 95000 93757.',
   alternates: { canonical: 'https://fixitchennai.in' },
 }
 

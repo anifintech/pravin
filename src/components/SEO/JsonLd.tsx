@@ -4,7 +4,7 @@ export function LocalBusinessJsonLd() {
     '@type': 'HomeAndConstructionBusiness',
     name: 'FixIt Chennai',
     description:
-      'Expert doorstep washing machine, refrigerator and dishwasher repair in Chennai. Certified technicians, genuine spare parts, same-day service.',
+      'Expert doorstep appliance repair in Chennai — AC, washing machine, refrigerator, TV, microwave & dishwasher. Certified technicians, genuine spare parts, same-day service.',
     url: 'https://fixitchennai.in',
     telephone: '+91-95000-93757',
     image: 'https://fixitchennai.in/og-image.jpg',
@@ -31,7 +31,9 @@ export function LocalBusinessJsonLd() {
     areaServed: [
       'Anna Nagar', 'Adyar', 'Velachery', 'T. Nagar', 'OMR', 'Tambaram',
       'Porur', 'Chromepet', 'Guindy', 'Mylapore', 'Nungambakkam', 'Besant Nagar',
-      'Sholinganallur', 'Perungudi', 'Pallavaram', 'Medavakkam',
+      'Sholinganallur', 'Perungudi', 'Pallavaram', 'Medavakkam', 'Perambur',
+      'Egmore', 'Royapettah', 'Kovilambakkam', 'Thoraipakkam', 'Navalur',
+      'Ambattur', 'Avadi', 'Poonamallee', 'Mogappair', 'Virugambakkam',
     ].map((area) => ({ '@type': 'City', name: area + ', Chennai' })),
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -74,6 +76,39 @@ export function LocalBusinessJsonLd() {
             url: 'https://fixitchennai.in/services/dishwasher',
           },
           price: '499',
+          priceCurrency: 'INR',
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'AC Repair Chennai',
+            description: 'Split AC, window AC repair, gas refilling & installation in Chennai. All brands — LG, Samsung, Daikin, Voltas, Blue Star.',
+            url: 'https://fixitchennai.in/services/ac-repair',
+          },
+          price: '399',
+          priceCurrency: 'INR',
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'TV Repair Chennai',
+            description: 'LED, LCD & Smart TV repair at doorstep in Chennai. Samsung, LG, Sony, OnePlus all brands serviced.',
+            url: 'https://fixitchennai.in/services/tv-repair',
+          },
+          price: '499',
+          priceCurrency: 'INR',
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Microwave Oven Repair Chennai',
+            description: 'Microwave oven repair for all brands at doorstep in Chennai. Solo, grill & convection models serviced.',
+            url: 'https://fixitchennai.in/services/microwave-repair',
+          },
+          price: '299',
           priceCurrency: 'INR',
         },
       ],
