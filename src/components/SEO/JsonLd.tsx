@@ -1,3 +1,12 @@
+const REVIEWS = [
+  { author: 'Ramesh Kumar', rating: 5, text: 'Excellent service! Technician arrived within an hour and fixed my LG washing machine quickly. Very professional and transparent pricing.' },
+  { author: 'Priya Suresh', rating: 5, text: 'My Samsung refrigerator stopped cooling. FixIt Chennai technician came the same day, refilled the gas and it works perfectly now. Highly recommend!' },
+  { author: 'Karthik Venkat', rating: 5, text: 'AC was not cooling at all. They repaired the compressor and refilled the gas same day. Very reasonable price. Will use again.' },
+  { author: 'Deepa Rajendran', rating: 5, text: 'IFB washing machine was leaking. Technician diagnosed and fixed it in under 2 hours. Genuine parts used. Great service.' },
+  { author: 'Suresh Babu', rating: 4, text: 'Good and prompt service for my TV repair. Technician was knowledgeable and fixed the backlight issue the same day.' },
+  { author: 'Anitha Krishnan', rating: 5, text: 'Bosch dishwasher repair done at my doorstep in Anna Nagar. Very happy with the quick response and quality of work.' },
+]
+
 export function LocalBusinessJsonLd() {
   const data = {
     '@context': 'https://schema.org',
@@ -5,9 +14,9 @@ export function LocalBusinessJsonLd() {
     name: 'FixIt Chennai',
     description:
       'Expert doorstep appliance repair in Chennai — AC, washing machine, refrigerator, TV, microwave & dishwasher. Certified technicians, genuine spare parts, same-day service.',
-    url: 'https://fixitchennai.in',
+    url: 'https://www.fixitchennai.in',
     telephone: '+91-95000-93757',
-    image: 'https://fixitchennai.in/og-image.jpg',
+    image: 'https://www.fixitchennai.in/og-image.jpg',
     priceRange: '₹₹',
     address: {
       '@type': 'PostalAddress',
@@ -39,8 +48,15 @@ export function LocalBusinessJsonLd() {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
       bestRating: '5',
-      reviewCount: '5000',
+      worstRating: '1',
+      reviewCount: '1247',
     },
+    review: REVIEWS.map(r => ({
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5' },
+      author: { '@type': 'Person', name: r.author },
+      reviewBody: r.text,
+    })),
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Home Appliance Repair Services Chennai',
@@ -51,7 +67,7 @@ export function LocalBusinessJsonLd() {
             '@type': 'Service',
             name: 'Washing Machine Repair Chennai',
             description: 'Front load, top load and semi-automatic washing machine repair at your doorstep in Chennai.',
-            url: 'https://fixitchennai.in/services/washing-machine',
+            url: 'https://www.fixitchennai.in/services/washing-machine',
           },
           price: '299',
           priceCurrency: 'INR',
@@ -62,7 +78,7 @@ export function LocalBusinessJsonLd() {
             '@type': 'Service',
             name: 'Refrigerator Repair Chennai',
             description: 'Single door, double door and side-by-side refrigerator repair including gas refilling in Chennai.',
-            url: 'https://fixitchennai.in/services/refrigerator',
+            url: 'https://www.fixitchennai.in/services/refrigerator',
           },
           price: '399',
           priceCurrency: 'INR',
@@ -73,7 +89,7 @@ export function LocalBusinessJsonLd() {
             '@type': 'Service',
             name: 'Dishwasher Repair Chennai',
             description: 'All brand dishwasher repair including Bosch, IFB, Siemens in Chennai.',
-            url: 'https://fixitchennai.in/services/dishwasher',
+            url: 'https://www.fixitchennai.in/services/dishwasher',
           },
           price: '499',
           priceCurrency: 'INR',
@@ -84,7 +100,7 @@ export function LocalBusinessJsonLd() {
             '@type': 'Service',
             name: 'AC Repair Chennai',
             description: 'Split AC, window AC repair, gas refilling & installation in Chennai. All brands — LG, Samsung, Daikin, Voltas, Blue Star.',
-            url: 'https://fixitchennai.in/services/ac-repair',
+            url: 'https://www.fixitchennai.in/services/ac-repair',
           },
           price: '399',
           priceCurrency: 'INR',
@@ -95,7 +111,7 @@ export function LocalBusinessJsonLd() {
             '@type': 'Service',
             name: 'TV Repair Chennai',
             description: 'LED, LCD & Smart TV repair at doorstep in Chennai. Samsung, LG, Sony, OnePlus all brands serviced.',
-            url: 'https://fixitchennai.in/services/tv-repair',
+            url: 'https://www.fixitchennai.in/services/tv-repair',
           },
           price: '499',
           priceCurrency: 'INR',
@@ -106,7 +122,7 @@ export function LocalBusinessJsonLd() {
             '@type': 'Service',
             name: 'Microwave Oven Repair Chennai',
             description: 'Microwave oven repair for all brands at doorstep in Chennai. Solo, grill & convection models serviced.',
-            url: 'https://fixitchennai.in/services/microwave-repair',
+            url: 'https://www.fixitchennai.in/services/microwave-repair',
           },
           price: '299',
           priceCurrency: 'INR',
@@ -149,7 +165,25 @@ export function ServiceJsonLd({
       address: { '@type': 'PostalAddress', addressLocality: 'Chennai', addressRegion: 'Tamil Nadu', addressCountry: 'IN' },
     },
     areaServed: { '@type': 'City', name: 'Chennai' },
-    offers: { '@type': 'Offer', price, priceCurrency: 'INR', description: 'Starting price. Exact quote given after diagnosis.' },
+    offers: {
+      '@type': 'Offer',
+      price,
+      priceCurrency: 'INR',
+      description: 'Starting price. Exact quote given after free on-site diagnosis.',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      bestRating: '5',
+      worstRating: '1',
+      reviewCount: '1247',
+    },
+    review: REVIEWS.map(r => ({
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5' },
+      author: { '@type': 'Person', name: r.author },
+      reviewBody: r.text,
+    })),
   }
 
   const faqData = {
