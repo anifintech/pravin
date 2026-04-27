@@ -123,6 +123,7 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: siteUrl },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  verification: { google: 'google93a9dcc7b3f7af17' },
   other: {
     'geo.region': 'IN-TN',
     'geo.placename': 'Chennai',
