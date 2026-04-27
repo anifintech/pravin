@@ -2,13 +2,34 @@ import Link from 'next/link'
 import { MapPin, ArrowRight } from 'lucide-react'
 
 const areas = [
-  'Anna Nagar', 'Adyar', 'Velachery', 'Tambaram',
-  'Porur', 'Chromepet', 'OMR', 'Perungudi',
-  'T. Nagar', 'Mylapore', 'Nungambakkam', 'Guindy',
-  'Besant Nagar', 'Sholinganallur', 'Pallavaram', 'Medavakkam',
-  'Kovilambakkam', 'Perambur', 'Egmore', 'Royapettah',
-  'Mogappair', 'Ambattur', 'Avadi', 'Poonamallee',
-  'Thoraipakkam', 'Navalur', 'Virugambakkam', 'KK Nagar',
+  { name: 'Anna Nagar',     slug: 'anna-nagar' },
+  { name: 'Adyar',          slug: 'adyar' },
+  { name: 'Velachery',      slug: 'velachery' },
+  { name: 'Tambaram',       slug: 'tambaram' },
+  { name: 'Porur',          slug: 'porur' },
+  { name: 'Chromepet',      slug: 'chromepet' },
+  { name: 'OMR',            slug: 'omr' },
+  { name: 'Perungudi',      slug: 'perungudi' },
+  { name: 'T. Nagar',       slug: 't-nagar' },
+  { name: 'Mylapore',       slug: 'mylapore' },
+  { name: 'Nungambakkam',   slug: 'nungambakkam' },
+  { name: 'Guindy',         slug: 'guindy' },
+  { name: 'Besant Nagar',   slug: 'besant-nagar' },
+  { name: 'Sholinganallur', slug: 'sholinganallur' },
+  { name: 'Pallavaram',     slug: 'pallavaram' },
+  { name: 'Medavakkam',     slug: 'medavakkam' },
+  { name: 'Kovilambakkam',  slug: 'kovilambakkam' },
+  { name: 'Perambur',       slug: 'perambur' },
+  { name: 'Egmore',         slug: 'egmore' },
+  { name: 'Royapettah',     slug: 'royapettah' },
+  { name: 'Mogappair',      slug: 'mogappair' },
+  { name: 'Ambattur',       slug: 'ambattur' },
+  { name: 'Avadi',          slug: 'avadi' },
+  { name: 'Poonamallee',    slug: 'poonamallee' },
+  { name: 'Thoraipakkam',   slug: 'thoraipakkam' },
+  { name: 'Navalur',        slug: 'navalur' },
+  { name: 'Virugambakkam',  slug: 'virugambakkam' },
+  { name: 'KK Nagar',       slug: 'kk-nagar' },
 ]
 
 export default function AreasSection() {
@@ -51,16 +72,17 @@ export default function AreasSection() {
           <div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {areas.map((area) => (
-                <div
-                  key={area}
-                  className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-orange-500/50 rounded-xl px-3 py-3 text-center transition-all cursor-default group"
+                <Link
+                  key={area.slug}
+                  href={`/areas/${area.slug}`}
+                  className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-orange-500/50 rounded-xl px-3 py-3 text-center transition-all group"
                 >
                   <MapPin className="w-3.5 h-3.5 text-orange-400 mx-auto mb-1.5 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm text-slate-300 font-medium">{area}</span>
-                </div>
+                  <span className="text-sm text-slate-300 font-medium group-hover:text-white transition-colors">{area.name}</span>
+                </Link>
               ))}
             </div>
-            <p className="text-center text-slate-500 text-sm mt-4">+ many more areas</p>
+            <p className="text-center text-slate-500 text-sm mt-4">Click any area to see local service details</p>
           </div>
         </div>
       </div>

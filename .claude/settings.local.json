@@ -45,7 +45,8 @@
       "Bash(cat .env.local)",
       "Bash(cat .env)",
       "Bash(flutter build *)",
-      "Bash(curl -s -X POST https://sabkebtiqplgvclgrrti.supabase.co/storage/v1/object/app-releases/triptapesim-latest.apk -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNhYmtlYnRpcXBsZ3ZjbGdycnRpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzgzOTg4MiwiZXhwIjoyMDg5NDE1ODgyfQ.84A3nVUVmq4SLQUW_qrWWhFVY0sqrkyYu47CFw90Bcg' -H 'Content-Type: application/vnd.android.package-archive' -H 'x-upsert: true' --data-binary @/Users/an/triptapesim/triptapesimmobileapp/triptapesimflutterapp/build/app/outputs/flutter-apk/app-release.apk)"
+      "Bash(curl -s -X POST https://sabkebtiqplgvclgrrti.supabase.co/storage/v1/object/app-releases/triptapesim-latest.apk -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNhYmtlYnRpcXBsZ3ZjbGdycnRpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzgzOTg4MiwiZXhwIjoyMDg5NDE1ODgyfQ.84A3nVUVmq4SLQUW_qrWWhFVY0sqrkyYu47CFw90Bcg' -H 'Content-Type: application/vnd.android.package-archive' -H 'x-upsert: true' --data-binary @/Users/an/triptapesim/triptapesimmobileapp/triptapesimflutterapp/build/app/outputs/flutter-apk/app-release.apk)",
+      "Bash(git commit *)"
     ]
   }
 }
